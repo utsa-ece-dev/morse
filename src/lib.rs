@@ -18,9 +18,8 @@ mod morse;
 ///
 /// If any of these conditions are not met, the behavior is undefined. If the Morse code output exceeds the provided buffer size,
 /// it will be truncated to fit, and the output will always be null-terminated.
-
 #[unsafe(no_mangle)]
-pub extern "C" fn encode_morse(
+pub unsafe extern "C" fn encode_morse(
     input: *const c_char,
     morse_output: *mut c_char,
     morse_output_size: c_int,
@@ -73,10 +72,11 @@ pub extern "C" fn encode_morse(
 /// - `input` points to a valid, null-terminated C string.
 /// - `decoded_output` points to a valid memory region of at least `decoded_output_size` bytes.
 /// - `decoded_output_size` is greater than 0.
+///
 /// If these conditions are not met, the behavior is undefined. If the decoded text exceeds the provided buffer size,
 /// it will be truncated, and the output will always be null-terminated.
 #[unsafe(no_mangle)]
-pub extern "C" fn decode_morse(
+pub unsafe extern "C" fn decode_morse(
     input: *const c_char,
     decoded_output: *mut c_char,
     decoded_output_size: c_int,
