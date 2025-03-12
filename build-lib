@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Building for RISC-V 64..."
+cargo build --release --target=riscv64gc-unknown-linux-musl
+cp target/riscv64gc-unknown-linux-musl/release/libmorse.so libmorse-riscv64.so
+
+echo "Building for ARM64 (AArch64)..."
+cargo build --release --target=aarch64-unknown-linux-gnu
+cp target/aarch64-unknown-linux-gnu/release/libmorse.so libmorse-aarch64.so
+
+cbindgen --crate morse --output morse.h
+
+echo "Done!"
