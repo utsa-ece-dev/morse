@@ -8,6 +8,10 @@ echo "Building for ARM64 (AArch64)..."
 cargo build --release --target=aarch64-unknown-linux-gnu
 cp target/aarch64-unknown-linux-gnu/release/libmorse.so libmorse-aarch64.so
 
+echo "Building for Host..."
+cargo build --release
+cp target/release/libmorse.so libmorse.so
+
 cbindgen --crate morse --output morse.h
 
 echo "Done!"
